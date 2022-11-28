@@ -1,5 +1,8 @@
 # sales-system
 
-![architecture](./architecture.png)
+![architecture](architecture.png)
 
-![demo](https://www.youtube.com/watch?v=Sr0zx4qshDA)
+- ui: ![webapp](webapp\README.md)
+- sales web service: api-gateway
+- customer web service: api-customers
+- orders web service: api-orders
