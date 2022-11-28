@@ -8,9 +8,10 @@
 		<version>2.7.1</version>
 		<relativePath/>
 	</parent>
+	
 	<groupId>com.edu.fbuni</groupId>
 	<artifactId>api-customers</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>api-customers</name>
 
 	<properties>

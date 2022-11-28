@@ -1,10 +1,7 @@
 {
-  "name": "demo-project",
+  "name": "api-orders",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "author": "Leonardo Anjos <leodrums11@gmail.com>",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
