@@ -1,10 +1,10 @@
 import { OrderModel } from 'src/domain/model/order.model';
 import { OrderRepository } from 'src/domain/repositories/order.repository';
 
-export class getOrdersUseCases {
+export class GetOrderUseCases {
   constructor(private readonly orderRepository: OrderRepository) {}
 
-  async execute(): Promise<OrderModel[]> {
-    return await this.orderRepository.findAll();
+  async execute(id: number): Promise<OrderModel> {
+    return await this.orderRepository.findById(id);
   }
 }

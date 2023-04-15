@@ -1,7 +1,7 @@
 import { OrderRepository } from 'src/domain/repositories/order.repository';
 import { ILogger } from '../../domain/logger/logger.interface';
 
-export class updateOrderUseCases {
+export class UpdateOrderUseCases {
   constructor(
     private readonly logger: ILogger,
     private readonly orderRepository: OrderRepository,
