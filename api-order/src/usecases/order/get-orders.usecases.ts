@@ -1,5 +1,5 @@
 import { OrderModel } from 'src/domain/model/order.model';
-import { OrderRepository } from 'src/domain/repositories/order.repository';
+import { OrderRepository } from 'src/domain/repositories/order.inteface';
 
 export class GetOrdersUseCases {
   constructor(private readonly orderRepository: OrderRepository) {}
