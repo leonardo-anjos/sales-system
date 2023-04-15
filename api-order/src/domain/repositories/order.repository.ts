@@ -1,7 +1,7 @@
 import { OrderModel } from 'src/domain/model/order.model';
 
 export interface OrderRepository {
-  insert(order: OrderModel): Promise<void>;
+  insert(order: OrderModel): Promise<OrderModel>;
   findAll(): Promise<OrderModel[]>;
   findById(id: number): Promise<OrderModel>;
   updateContent(
