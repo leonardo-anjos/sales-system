@@ -29,4 +29,4 @@ export const getTypeOrmModuleOptions = (
     }),
   ],
 })
-export class TypeormModule {}
+export class TypeOrmConfigModule {}

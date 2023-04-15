@@ -4,10 +4,6 @@ export interface OrderRepository {
   insert(order: OrderModel): Promise<OrderModel>;
   findAll(): Promise<OrderModel[]>;
   findById(id: number): Promise<OrderModel>;
-  updateContent(
-    id: number,
-    customerId: number,
-    description: string,
-  ): Promise<void>;
+  updateContent(id: number, customerId: number): Promise<void>;
   deleteById(id: number): Promise<void>;
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UseCaseProxy } from 'src/infrastructure/usecases-proxy/usecases-proxy';
 import { UsecasesProxyModule } from 'src/infrastructure/usecases-proxy/usecases-proxy.module';
@@ -9,6 +9,7 @@ import { GetOrdersUseCases } from 'src/usecases/order/get-orders.usecases';
 import { UpdateOrderUseCases } from 'src/usecases/order/update-order.usecases';
 import { OrderPresenter } from './order.presenter';
 import { AddOrderDto, UpdateOrderDto } from './order.dto';
+import { ApiResponseType } from 'src/infrastructure/common/swagger/response.decorator';
 
 @Controller('order')
 @ApiTags('order')
@@ -28,34 +29,39 @@ export class OrderController {
   ) {}
 
   @Get('order')
-  async getOrder(@Query('id') id: number) {
+  @ApiResponseType(OrderPresenter, false)
+  async getOrder(@Query('id', ParseIntPipe) id: number) {
     const order = await this.getOrderUsecaseProxy.getInstance().execute(id);
     return new OrderPresenter(order);
   }
 
   @Get('orders')
+  @ApiResponseType(OrderPresenter, true)
   async getOrders() {
     const orders = await this.getAllOrderUsecaseProxy.getInstance().execute();
     return orders.map((order) => new OrderPresenter(order));
   }
 
   @Put('order')
+  @ApiResponseType(OrderPresenter, true)
   async updateOrder(@Body() updateOrderDto: UpdateOrderDto) {
-    const { id, customerId, description } = updateOrderDto;
-    await this.updateOrderUsecaseProxy.getInstance().execute(id, customerId, description);
+    const { id, customerId } = updateOrderDto;
+    await this.updateOrderUsecaseProxy.getInstance().execute(id, customerId);
     return 'success';
   }
 
   @Delete('order')
+  @ApiResponseType(OrderPresenter, true)
   async deleteOrder(@Query('id') id: number) {
     await this.deleteOrderUsecaseProxy.getInstance().execute(id);
     return 'success';
   }
 
   @Post('order')
+  @ApiResponseType(OrderPresenter, true)
   async addOrder(@Body() addOrderDto: AddOrderDto) {
-    const { customerId, description } = addOrderDto;
-    const orderCreated = await this.addOrderUsecaseProxy.getInstance().execute(customerId, description);
+    const { description } = addOrderDto;
+    const orderCreated = await this.addOrderUsecaseProxy.getInstance().execute(description);
     return new OrderPresenter(orderCreated);
   }
 }

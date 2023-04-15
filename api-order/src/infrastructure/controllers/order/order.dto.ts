@@ -1,25 +1,20 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Max,
-  Min,
-} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class AddOrderDto {
+export class UpdateOrderDto {
+  @ApiProperty({ required: true })
   @IsNotEmpty()
   @IsNumber()
-  @Max(9999999999)
-  @Min(0)
-  @ApiProperty()
-  customerId: number;
-
-  @IsString({ message: 'description must be a text' })
-  @ApiProperty()
-  @IsOptional()
-  description: string;
+  readonly id: number;
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @IsNumber()
+  readonly customerId: number;
 }
 
-export class UpdateOrderDto extends PartialType(AddOrderDto) {}
+export class AddOrderDto {
+  @ApiProperty({ required: false })
+  @IsNotEmpty()
+  @IsString()
+  readonly description: string;
+}

@@ -4,24 +4,20 @@ import { OrderModel } from 'src/domain/model/order.model';
 export class OrderPresenter {
   @ApiProperty()
   id: number;
-
   @ApiProperty()
   customerId: number;
-
   @ApiProperty()
   description: string;
-
   @ApiProperty()
-  createdAt: Date;
-
+  createdate: Date;
   @ApiProperty()
-  updatedAt: Date;
+  updateddate: Date;
 
   constructor(order: OrderModel) {
     this.id = order.id;
     this.customerId = order.customerId;
     this.description = order.description;
-    this.createdAt = order.createdAt;
-    this.updatedAt = order.updatedAt;
+    this.createdate = order.createdDate;
+    this.updateddate = order.updatedDate;
   }
 }

@@ -1,25 +1,19 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity({ name: 'order' })
+@Entity()
 export class Order {
   @PrimaryGeneratedColumn({ type: 'integer' })
   id: number;
 
-  @Column({ type: 'int', nullable: false })
-  customerId: number;
+  @Column('int', { nullable: false })
+  customer_id: number;
 
-  @Column({ type: 'text', nullable: true })
+  @Column('varchar', { length: 255, nullable: true })
   description: string;
 
-  @CreateDateColumn({ name: 'createdAt' })
-  createdAt: Date;
+  @CreateDateColumn({ name: 'createdate' })
+  created_date: Date;
 
-  @UpdateDateColumn({ name: 'updatedAt' })
-  updatedAt: Date;
+  @UpdateDateColumn({ name: 'updateddate' })
+  updated_date: Date;
 }
